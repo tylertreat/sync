@@ -25,6 +25,7 @@ reentrant_lock_t* reentrant_lock_init()
     mutex_t* owner_mu = mutex_init();
     if (!owner_mu)
     {
+        mutex_dispose(mu);
         return NULL;
     }
 
@@ -32,6 +33,8 @@ reentrant_lock_t* reentrant_lock_init()
     if (!lock)
     {
         errno = ENOMEM;
+        mutex_dispose(mu);
+        mutex_dispose(owner_mu);
         return NULL;
     }
 
