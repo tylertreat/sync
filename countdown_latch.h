@@ -9,9 +9,9 @@
 // latch must be counted down before calls to await proceed.
 typedef struct countdown_latch_t
 {
-    int              count;
-    pthread_mutex_t* mu;
-    pthread_cond_t*  cond;
+    int             count;
+    pthread_mutex_t mu;
+    pthread_cond_t  cond;
 } countdown_latch_t;
 
 // Initializes a countdown latch and sets its initial value. Sets errno and
